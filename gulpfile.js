@@ -7,7 +7,8 @@ var gulp = require('gulp'),
   concat = require('gulp-concat'),
   clean = require('gulp-clean'),
   fs = require('fs'),
-  packagejson = JSON.parse(fs.readFileSync('./package.json'));;
+  packagejson = JSON.parse(fs.readFileSync('./package.json')),
+  privatejson = JSON.parse(fs.readFileSync('./private.json'));
 
 
 gulp.task('webserver', function() {
@@ -34,8 +35,9 @@ gulp.task('twig', function () {
     return gulp.src('views/index.twig')
         .pipe(twig({
             data: {
-                title: 'Quick gulp setup',
+                title: packagejson.name,
                 author: packagejson.author,
+                googleMaps: privatejson.googleMaps,
                 benefits: [
                     'Fast',
                     'Flexible',
