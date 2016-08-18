@@ -57,8 +57,10 @@ gulp.task('less', function() {
 });
 
 gulp.task('scripts', function() {
-  return gulp.src('assets/scripts/**/*.js')
-    .pipe(concat('main.js'))
+  return gulp.src([
+    'assets/lib/gpxviewer/loadgpx.js',
+    'assets/scripts/**/*.js'
+  ]).pipe(concat('main.js'))
     .pipe(gulp.dest('dist/scripts/'))
     .pipe(connect.reload());
 });
@@ -66,6 +68,11 @@ gulp.task('scripts', function() {
 gulp.task('bootstrap', function() {
   return gulp.src('./assets/bower_components/bootstrap/dist/js/bootstrap.min.js')
     .pipe(gulp.dest('./dist/scripts'));
+});
+
+gulp.task('xml', function() {
+  return gulp.src('./data/xml/*.gpx')
+    .pipe(gulp.dest('./dist/xml'));
 });
 
 gulp.task('watch', function() {
@@ -79,6 +86,7 @@ gulp.task('default', [
   'less',
   'scripts',
   'bootstrap',
+  'xml',
   'webserver',
   'watch'
 ]);

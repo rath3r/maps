@@ -1,27 +1,89 @@
 // https://addyosmani.com/largescalejavascript/
 
 var App = (function(){
-  var init = function() {
-    console.log("init");
+  var map,
+  routes,
+  color = {
+    r: 1,
+    g: 1,
+    b: 1
+  },
+  init = function() {
+    // console.log("init");
     test();
     // initMap();
+    //initXML();
   },
   test = function (){
-    console.log("another test");
+    // console.log("another test");
   },
   initMap = function () {
-    // Create a map object and specify the DOM element for display.
-    // var map = new google.maps.Map(document.getElementById('map'), {
-    //   center: {lat: -34.397, lng: 150.644},
-    //   scrollwheel: false,
-    //   zoom: 8
-    // });
 
-    var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 3,
-      center: {lat: 0, lng: -180},
+    var centre = {
+        lat: 51.481186,
+        lng: -0.055294
+    },
+    zoomLevel = 12;
+
+    map = new google.maps.Map(document.getElementById('map'), {
+      zoom: zoomLevel,
+      center: {lat: centre.lat, lng: centre.lng},
       mapTypeId: 'terrain'
     });
+
+    //testPath();
+    initXML();
+  },
+  initXML = function () {
+
+    var routes = [
+      '20160801173845.gpx',
+      '20160802081635.gpx',
+      '20160802173802.gpx',
+      '20160803081906.gpx',
+      '20160803172240.gpx',
+      '20160808085526.gpx',
+      '20160808174242.gpx',
+      '20160809083927.gpx',
+      '20160809173559.gpx',
+      '20160810083806.gpx',
+      '20160810174615.gpx',
+      '20160816083341.gpx',
+      '20160816174541.gpx',
+      '20160817083615.gpx',
+      '20160817175832.gpx',
+      '20160818083512.gpx',
+    ];
+
+    for (var i = 0; i < routes.length; i++) {
+      getXML('/xml/' + routes[i]);
+    }
+
+  },
+  getXML = function (file) {
+    // Load the xml file using ajax
+    $.ajax({
+      type: "GET",
+      url: file,
+      dataType: "xml",
+      success: function (xml) {
+        parseXML(xml);
+      }
+    });
+  },
+  parseXML = function (xml) {
+
+    var parser = new GPXParser(xml, map);
+
+    parser.setTrackColour(getColor());     // Set the track line colour
+    parser.setTrackWidth(5);          // Set the track line width
+    parser.setMinTrackPointDelta(0.001);      // Set the minimum distance between track points
+    parser.centerAndZoom(xml);
+    parser.addTrackpointsToMap();         // Add the trackpoints
+    parser.addWaypointsToMap();           // Add the waypoints
+
+  },
+  testPath = function () {
 
     var flightPlanCoordinates = [
       {lat: 37.772, lng: -122.214},
@@ -38,6 +100,27 @@ var App = (function(){
     });
 
     flightPath.setMap(map);
+  },
+  getColor = function() {
+
+    incrementColor();
+    return rgbToHex(color.r, color.g, color.b);
+
+  },
+  incrementColor = function(){
+
+    // Math.floor(Math.random() * 6) + 1
+    color.r = Math.floor(Math.random() * 255) + 1;
+    color.g = Math.floor(Math.random() * 255) + 1;
+    color.b = Math.floor(Math.random() * 255) + 1;
+
+  },
+  componentToHex = function (c) {
+    var hex = c.toString(16);
+    return hex.length == 1 ? "0" + hex : hex;
+  },
+  rgbToHex = function (r, g, b) {
+    return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
   };
   return {
     init: init,
