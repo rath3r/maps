@@ -20,8 +20,8 @@ var App = (function(){
   initMap = function () {
 
     var centre = {
-        lat: 51.481186,
-        lng: -0.055294
+        lat: 53.346769,
+        lng: -6.262939
     },
     zoomLevel = 12;
 
@@ -48,11 +48,14 @@ var App = (function(){
       '20160809173559.gpx',
       '20160810083806.gpx',
       '20160810174615.gpx',
-      '20160816083341.gpx',
       '20160816174541.gpx',
       '20160817083615.gpx',
       '20160817175832.gpx',
       '20160818083512.gpx',
+      '20160818173848.gpx',
+      '20160818195257.gpx',
+      '20160820203142.gpx',
+      '20160822083703.gpx'
     ];
 
     for (var i = 0; i < routes.length; i++) {
@@ -109,11 +112,14 @@ var App = (function(){
   },
   incrementColor = function(){
 
-    // Math.floor(Math.random() * 6) + 1
-    color.r = Math.floor(Math.random() * 255) + 1;
-    color.g = Math.floor(Math.random() * 255) + 1;
-    color.b = Math.floor(Math.random() * 255) + 1;
+    color.r = getRandomNumber(255);
+    color.g = getRandomNumber(150);
+    color.b = getRandomNumber(255);
 
+  },
+  getRandomNumber = function(top) {
+    var random = Math.floor(Math.random() * top) + 1;
+    return random;
   },
   componentToHex = function (c) {
     var hex = c.toString(16);
