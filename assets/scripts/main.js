@@ -55,7 +55,9 @@ var App = (function(){
       '20160818173848.gpx',
       '20160818195257.gpx',
       '20160820203142.gpx',
-      '20160822083703.gpx'
+      '20160822083703.gpx',
+      '20160822173901.gpx',
+      '20160823084353.gpx'
     ];
 
     for (var i = 0; i < routes.length; i++) {
@@ -135,3 +137,16 @@ var App = (function(){
 }())
 
 App.init();
+
+// ** MySQL settings - You can get this info from your web host ** //
+/** The name of the database for WordPress */
+define('DB_NAME', 'infusive_fuse');
+
+/** MySQL database username */
+define('DB_USER', 'infusive');
+
+/** MySQL database password */
+define('DB_PASSWORD', '7FWHLYiPuCrt');
+
+/** MySQL hostname */
+define('DB_HOST', 'localhost');
