@@ -6,9 +6,21 @@ var gulp = require('gulp'),
   twig = require('gulp-twig'),
   concat = require('gulp-concat'),
   clean = require('gulp-clean'),
+  open = require('gulp-open'),
+  os = require('os'),
   fs = require('fs'),
   packagejson = JSON.parse(fs.readFileSync('./package.json')),
-  privatejson = JSON.parse(fs.readFileSync('./private.json'));
+  privatejson = JSON.parse(fs.readFileSync('./private.json')),
+  files = fs.readdirSync('./data/xml'),
+  browser;
+
+//console.log(files);
+
+browser = os.platform() === 'linux' ? 'google-chrome' : (
+  os.platform() === 'darwin' ? 'Google Chrome' : (
+    os.platform() === 'win32' ? 'chrome' : 'firefox'
+  )
+);
 
 
 gulp.task('webserver', function() {
@@ -42,7 +54,8 @@ gulp.task('twig', function () {
                     'Fast',
                     'Flexible',
                     'Secure'
-                ]
+                ],
+                files: files
             }
         }))
         .pipe(gulp.dest('dist/'))
@@ -81,6 +94,15 @@ gulp.task('watch', function() {
     gulp.watch('assets/scripts/**/*.js', ['scripts']);
 });
 
+gulp.task('open', function(){
+  var options = {
+    uri: 'localhost:8080',
+    app: browser
+  };
+  gulp.src('./dist/index.html')
+    .pipe(open(options));
+});
+
 gulp.task('default', [
   'twig',
   'less',
@@ -88,5 +110,6 @@ gulp.task('default', [
   'bootstrap',
   'xml',
   'webserver',
-  'watch'
+  'watch',
+  'open'
 ]);

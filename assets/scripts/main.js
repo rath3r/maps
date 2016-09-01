@@ -10,9 +10,10 @@ var App = (function(){
   },
   init = function() {
     // console.log("init");
-    test();
+    //test();
     // initMap();
     //initXML();
+    //console.log(files);
   },
   test = function (){
     // console.log("another test");
@@ -36,33 +37,8 @@ var App = (function(){
   },
   initXML = function () {
 
-    var routes = [
-      '20160801173845.gpx',
-      '20160802081635.gpx',
-      '20160802173802.gpx',
-      '20160803081906.gpx',
-      '20160803172240.gpx',
-      '20160808085526.gpx',
-      '20160808174242.gpx',
-      '20160809083927.gpx',
-      '20160809173559.gpx',
-      '20160810083806.gpx',
-      '20160810174615.gpx',
-      '20160816174541.gpx',
-      '20160817083615.gpx',
-      '20160817175832.gpx',
-      '20160818083512.gpx',
-      '20160818173848.gpx',
-      '20160818195257.gpx',
-      '20160820203142.gpx',
-      '20160822083703.gpx',
-      '20160822173901.gpx',
-      '20160823084353.gpx',
-      '20160823174100.gpx'
-    ];
-
-    for (var i = 0; i < routes.length; i++) {
-      getXML('/xml/' + routes[i]);
+    for (var i = 0; i < files.length; i++) {
+      getXML('/xml/' + files[i]);
     }
 
   },
@@ -82,7 +58,7 @@ var App = (function(){
     var parser = new GPXParser(xml, map);
 
     parser.setTrackColour(getColor());     // Set the track line colour
-    parser.setTrackWidth(5);          // Set the track line width
+    parser.setTrackWidth(2);          // Set the track line width
     parser.setMinTrackPointDelta(0.001);      // Set the minimum distance between track points
     parser.centerAndZoom(xml);
     parser.addTrackpointsToMap();         // Add the trackpoints
