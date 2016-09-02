@@ -11,7 +11,10 @@ var gulp = require('gulp'),
   fs = require('fs'),
   packagejson = JSON.parse(fs.readFileSync('./package.json')),
   privatejson = JSON.parse(fs.readFileSync('./private.json')),
+  files = fs.readdirSync('./data/xml'),
   browser;
+
+//console.log(files);
 
 browser = os.platform() === 'linux' ? 'google-chrome' : (
   os.platform() === 'darwin' ? 'Google Chrome' : (
@@ -51,7 +54,8 @@ gulp.task('twig', function () {
                     'Fast',
                     'Flexible',
                     'Secure'
-                ]
+                ],
+                files: files
             }
         }))
         .pipe(gulp.dest('dist/'))
