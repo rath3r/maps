@@ -57,7 +57,13 @@ var App = (function(){
       '20160820203142.gpx',
       '20160822083703.gpx',
       '20160822173901.gpx',
-      '20160823084353.gpx'
+      '20160823084353.gpx',
+      '20160823174100.gpx',
+      '20160830082845.gpx',
+      '20160830173939.gpx',
+      '20160831082846.gpx',
+      '20160831173812.gpx',
+      '20160901083115.gpx'
     ];
 
     for (var i = 0; i < routes.length; i++) {
@@ -81,7 +87,7 @@ var App = (function(){
     var parser = new GPXParser(xml, map);
 
     parser.setTrackColour(getColor());     // Set the track line colour
-    parser.setTrackWidth(5);          // Set the track line width
+    parser.setTrackWidth(2);          // Set the track line width
     parser.setMinTrackPointDelta(0.001);      // Set the minimum distance between track points
     parser.centerAndZoom(xml);
     parser.addTrackpointsToMap();         // Add the trackpoints
@@ -137,16 +143,3 @@ var App = (function(){
 }())
 
 App.init();
-
-// ** MySQL settings - You can get this info from your web host ** //
-/** The name of the database for WordPress */
-define('DB_NAME', 'infusive_fuse');
-
-/** MySQL database username */
-define('DB_USER', 'infusive');
-
-/** MySQL database password */
-define('DB_PASSWORD', '7FWHLYiPuCrt');
-
-/** MySQL hostname */
-define('DB_HOST', 'localhost');
