@@ -1,5 +1,5 @@
 <?php
-$path = 'data/original';
+$path = 'data/tmp';
 if ($handle = opendir($path)) {
 
   echo "Directory handle: $handle\n";
@@ -24,7 +24,9 @@ if ($handle = opendir($path)) {
 
           if(
             test1($trkpt->attributes()->lat, $trkpt->attributes()->lon) ||
-            test2($trkpt->attributes()->lat, $trkpt->attributes()->lon)
+            test2($trkpt->attributes()->lat, $trkpt->attributes()->lon) ||
+            test3($trkpt->attributes()->lat, $trkpt->attributes()->lon) ||
+            test4($trkpt->attributes()->lat, $trkpt->attributes()->lon)
           ){
 
             $nodesToRemove[] = $trkpt;
@@ -71,6 +73,32 @@ function test2($lat, $lon) {
   if (
     (($lat > '51.522029') && ($lat < '51.525308')) &&
     (($lon < '-0.071724') && ($lon > '-0.078781'))
+  ) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function test3($lat, $lon) {
+  //51.513409, -0.123144
+  //51.512441, -0.119367
+  if (
+    (($lat > '51.512441') && ($lat < '51.513409')) &&
+    (($lon < '-0.119367') && ($lon > '-0.123144'))
+  ) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function test4($lat, $lon) {
+  //51.528184, -0.104646
+  //51.527343, -0.100440
+  if (
+    (($lat > '51.527343') && ($lat < '51.528184')) &&
+    (($lon < '-0.100440') && ($lon > '-0.104646'))
   ) {
     return true;
   } else {

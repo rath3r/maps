@@ -38,7 +38,7 @@ var App = (function(){
   initXML = function () {
 
     for (var i = 0; i < files.length; i++) {
-      getXML('/xml/' + files[i]);
+      getXML('xml/' + files[i]);
     }
 
   },
