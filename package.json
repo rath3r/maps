@@ -17,5 +17,8 @@
     "gulp-less": "^3.1.0",
     "gulp-twig": "^0.5.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "jsonfile": "^4.0.0",
+    "togeojson": "^0.16.0"
+  }
 }
