@@ -1,7 +1,7 @@
 var DOMParser = require('xmldom').DOMParser;
     tj = require('togeojson'),
     fs = require('fs'),
-    readPath = 'data/public/',
+    readPath = 'data/xml/',
     writePath = 'data/geojson/',
     gpxFormat = '.gpx',
     jsonFormat = '.geojson';

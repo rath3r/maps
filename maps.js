@@ -3,7 +3,7 @@ var mapsModule = require('./maps-module'),
 
 var mapFiles = [],
     mapGeojsonFilesObj = new Object(),
-    readPath = 'data/public/',
+    readPath = 'data/xml/',
     writePath = 'data/geojson/';
 
 fs.readdirSync(readPath).forEach(gpxFile => {
