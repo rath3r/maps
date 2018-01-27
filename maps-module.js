@@ -26,8 +26,20 @@ module.exports = {
        this.writeJsonFile(jsonFilePath, converted)
    },
    createFilenamesJson: function(filenameObj) {
-       var mapFilenamesPath = writePath + 'map-filenames.json';
+        var replacementFilesObj = new Object();
+        var randomFilenameObj = new Object();
+        var mapFilenamesPath = writePath + 'map-filenames.json';
+        console.log("createFilenamesJson????");
+        // console.log(filenameObj.mapNames);
+        console.log(filenameObj.mapNames.length);
 
-       this.writeJsonFile(mapFilenamesPath, filenameObj);
+       var randomFilenameNo = Math.floor(Math.random() * filenameObj.mapNames.length) + 1;
+       var randomFilename = filenameObj.mapNames[randomFilenameNo];
+       randomFilenameObj.mapNames = [];
+       var refilenameObj = new Object();
+       refilenameObj.filename = randomFilenameObj + '.geojson';
+       randomFilenameObj.mapNames.push(filename);
+       console.log(randomFilenameObj);
+       this.writeJsonFile(mapFilenamesPath, randomFilenameObj);
   }
 }

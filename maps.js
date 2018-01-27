@@ -12,13 +12,13 @@ fs.readdirSync(readPath).forEach(gpxFile => {
   mapFiles.push(gpxFilenameArr[0]);
 })
 
-mapGeojsonFilesObj.maps = [];
+mapGeojsonFilesObj.mapNames = [];
 
 for (var i = 0; i < mapFiles.length; i++) {
-    mapsModule.convertToGeojson(mapFiles[i]);
-    filename = new Object;
+    //mapsModule.convertToGeojson(mapFiles[i]);
+    filename = new Object();
     filename.filename = mapFiles[i] + '.geojson';
-    mapGeojsonFilesObj.maps.push(filename);
+    mapGeojsonFilesObj.mapNames.push(filename);
 }
 
 //console.log(mapGeojsonFiles);
