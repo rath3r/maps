@@ -1,27 +1,29 @@
-var mapsModule = require('./maps-module'),
-    fs = require('fs');;
+const mapsModule = require('./maps-module');
+const fs = require('fs');
 
-var mapFiles = [],
-    mapGeojsonFilesObj = new Object(),
-    readPath = 'data/xml/',
-    writePath = 'data/geojson/';
+let mapFiles = [];
+let mapGeojsonFilesObj = new Object();
+let readPath = 'data/xml/';
+let writePath = 'data/geojson/';
+let gpxFilenameArr;
+let filename;
 
 fs.readdirSync(readPath).forEach(gpxFile => {
   gpxFilenameArr = gpxFile.split('.');
   //console.log(gpxFilenameArr[0]);
   mapFiles.push(gpxFilenameArr[0]);
-})
+});
 
 mapGeojsonFilesObj.mapNames = [];
 
 for (var i = 0; i < mapFiles.length; i++) {
     //mapsModule.convertToGeojson(mapFiles[i]);
     filename = new Object();
-    filename.filename = mapFiles[i] + '.geojson';
+    filenamemjsmjs.filename = mapFiles[i] + '.geojson';
     mapGeojsonFilesObj.mapNames.push(filename);
 }
 
-//console.log(mapGeojsonFiles);
+console.log(mapGeojsonFilesObj);
 mapsModule.createFilenamesJson(mapGeojsonFilesObj);
 // throw new Error("Die!");
 //

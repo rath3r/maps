@@ -10,6 +10,10 @@ It also makes use of [peplin/gpxviewer][3] to parse the `.gpx` xml file. The
 actual data is not included in the repo. `Gulp` copies the `.gpx` files to the
 `dist` directory and they are called via a hard coded array in the `main.js`.
 
+To tidy json.
+
+`npm run json-tidy`
+
 ## Private Keys
 
 Google maps requires a private key which shouldn't be shared on Github so there
